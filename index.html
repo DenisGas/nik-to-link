@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Nik-to-Link</title>
+</head>
+
+<body>
+
+  <header class="header">
+    <img class="ico" src="./img/ico.png">
+  </header>
+  <main class="main">
+
+    <div class="textarea--box NIK">
+      <h2 class=" textarea--box__h2">NIK</h2>
+      <textarea id="nik-textarea" class=" textarea--box__textarea"></textarea>
+    </div>
+
+    <div class="textarea--box LINK">
+      <h2 class=" textarea--box__h2">LINK</h2>
+      <textarea disabled id="link-textarea" class="textarea--box__textarea"></textarea>
+      <button id="link-copy-btn">Copy</button>
+    </div>
+
+    <div class="typeLinkBtn--box">
+      <input checked type="radio" id="type-link-1" name="typesLink" value="instagram">
+      <label for="type-link-1">Instagram</label>
+
+      <input type="radio" id="type-link-2" name="typesLink" value="telegram">
+      <label for="type-link-2">Telegram</label>
+
+      <input type="radio" id="type-link-3" name="typesLink" value="youtube">
+      <label for="type-link-3">YouTube</label>
+    </div>
+
+    <div class="checkbox--box">
+      <input id="without-text" type="checkbox">
+      <label for="without-text">Only Links</label>
+    </div>
+
+    <div class="btn--box">
+      <button id="get-link-button">GET LINK</button>
+    </div>
+
+  </main>
+  <footer class="footer">
+    <p>© Made by DenisGasilo <a target="_blank" href="https://github.com/DenisGas">Project Page</a></p>
+  </footer>
+
+  <div id="message-container"></div>
+  <script defer src="./js/main.js"></script>
+</body>
+
+</html>
