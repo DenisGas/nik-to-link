@@ -82,6 +82,8 @@ function getLinkPath(linkType) {
       return "https://t.me/";
     case 'youtube':
       return "https://www.youtube.com/@";
+    case 'tiktok':
+      return "http://www.tiktok.com/@";
     default:
       return "ERROR"
   }
