@@ -13,37 +13,80 @@
 
   <header class="header">
     <img class="ico" src="./img/logo.png">
+    <p>BETA</p>
   </header>
   <main class="main">
+    <section class="about">
+      <h1>About</h1>
+      <p>This site was invented to quickly tag people from an Instagram post - in the description with links for
+        YouTube.</p>
+      <p>The site works with Instagram, YouTube, TikTok and Telegram type link</p>
+      <div class="">
+        <h2>Example</h2>
+        <div class="">
+          <p style="color: #ff8800;">Instagram:</p>
+          <p>Hana as Niki @kamilla.rst <br>
+            Tori as Jugwon @msvxl<br>
+          </p>
+        </div>
+        <div class="">
+          <p style="color: #ff8800;">After convertor with config "Instagram"</p>
+          Hana as Niki https://www.instagram.com/kamilla.rst <br>
+          Tori as Jugwon https://www.instagram.com/msvxl
 
-    <div class="textarea--box NIK">
-      <h2 class=" textarea--box__h2">@NIK</h2>
-      <textarea id="nik-textarea" class=" textarea--box__textarea"></textarea>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class=" textarea--boxes">
+      <div class="textarea--box NIK">
+        <h2 class=" textarea--box__h2">@NIK</h2>
+        <textarea id="nik-textarea" class=" textarea--box__textarea"></textarea>
+      </div>
+
+      <div class="textarea--box LINK">
+        <h2 class=" textarea--box__h2">LINK</h2>
+        <div id="link-textarea" class="textarea--box__textarea">
+          <button id="link-copy-btn">Copy</button>
+          <div id="link-text"></div>
+        </div>
+
+      </div>
+
     </div>
-
-    <div class="textarea--box LINK">
-      <h2 class=" textarea--box__h2">LINK</h2>
-      <textarea disabled id="link-textarea" class="textarea--box__textarea"></textarea>
-      <button id="link-copy-btn">Copy</button>
-    </div>
-
     <div class="typeLinkBtn--box">
-      <input checked type="radio" id="type-link-1" name="typesLink" value="instagram">
-      <label for="type-link-1">Instagram</label>
 
-      <input type="radio" id="type-link-2" name="typesLink" value="telegram">
-      <label for="type-link-2">Telegram</label>
+      <div>
+        <input checked type="radio" id="type-link-1" name="typesLink" value="instagram">
+        <label for="type-link-1">Instagram</label>
+      </div>
 
-      <input type="radio" id="type-link-3" name="typesLink" value="youtube">
-      <label for="type-link-3">YouTube</label>
+      <div>
+        <input type="radio" id="type-link-2" name="typesLink" value="telegram">
+        <label for="type-link-2">Telegram</label>
+      </div>
 
-      <input type="radio" id="type-link-4" name="typesLink" value="tiktok">
-      <label for="type-link-4">TikTok</label>
+      <div>
+        <input type="radio" id="type-link-3" name="typesLink" value="youtube">
+        <label for="type-link-3">YouTube</label>
+      </div>
+      <div>
+        <input type="radio" id="type-link-4" name="typesLink" value="tiktok">
+        <label for="type-link-4">TikTok</label>
+      </div>
     </div>
 
-    <div class="checkbox--box">
-      <input id="without-text" type="checkbox">
-      <label for="without-text">Only Links</label>
+    <div class="checkboxes-box">
+      <div>
+        <input class="config-box" id="without-text" type="checkbox">
+        <label for="without-text">Only Links</label>
+      </div>
+      <div>
+        <input class="config-box" id="replace-socials-links" type="checkbox">
+        <label for="replace-socials-links">replace Social Links</label>
+      </div>
+
     </div>
 
     <div class="btn--box">
@@ -52,7 +95,7 @@
 
   </main>
   <footer class="footer">
-    <p>© Made by DenisGasilo <a target="_blank" href="https://github.com/DenisGas">Project Page</a></p>
+    <p>© Made by DenisGasilo <a target="_blank" href="https://github.com/DenisGas/nik-to-link">Project Page</a></p>
   </footer>
 
   <div id="message-container"></div>
