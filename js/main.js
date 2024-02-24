@@ -4,6 +4,7 @@ const GET_LINK_BUTTON = document.getElementById("get-link-button");
 const COPY_BTN = document.getElementById("link-copy-btn")
 
 
+
 const TextAreaNikContent = localStorage.getItem('TextAreaNik');
 if (TextAreaNikContent !== null) {
   NIK_INPUT.value = TextAreaNikContent;
@@ -52,8 +53,8 @@ function callGetLinkFunc() {
   const linkType = getLinkType();
   const onlyLinks = getCheckBoxState("without-text");
   const replaceSocialLinks = getCheckBoxState("replace-socials-links");
-  const link = getLink(text, linkType, onlyLinks, replaceSocialLinks);
-
+  const cleanLink = getCheckBoxState("clean-link");
+  const link = getLink(text, linkType, onlyLinks, replaceSocialLinks, cleanLink);
 
   LINK_OUTPUT.innerText = link;
 
@@ -127,7 +128,7 @@ function getLinkPath(linkType) {
 
 
 
-function getLink(text, linkType = "instagram", onlyLinks = false, replaceSocialLinks = false,
+function getLink(text, linkType = "instagram", onlyLinks = false, replaceSocialLinks = false, cleanLink = false,
   delimiter = "") {
 
   const linkPath = getLinkPath(linkType);
@@ -148,16 +149,29 @@ function getLink(text, linkType = "instagram", onlyLinks = false, replaceSocialL
       return `${delimiter}${linkPath}${username} `;
     });
 
+
+  if (cleanLink || replaceSocialLinks) {
+    const cleanLinkPattern = /\?.*/g;
+    modifiedString = modifiedString.replace(cleanLinkPattern, " ");
+  }
+
+  console.log(modifiedString);
+
   if (onlyLinks) {
     const onlyLinksPattern = /(https?:\/\/)(?:www\.)?([^\s]+)/g;
     const matches = modifiedString.match(onlyLinksPattern);
-    modifiedString = matches ? matches.join("\n") : "";;
+    modifiedString = matches ? matches.join("\n") : "";
   }
 
+  console.log(modifiedString);
+
   if (replaceSocialLinks) {
-    const linkPattern = /(https:\/\/www\.instagram\.com\/|https:\/\/www\.youtube\.com\/@|https:\/\/t\.me\/|http:\/\/www\.tiktok\.com\/@)/g;
+    console.log(modifiedString);
+
+    const linkPattern = /(https?:\/\/(?:www\.)?instagram\.com\/|https?:\/\/(?:www\.)?youtube\.com\/@|https?:\/\/(?:www\.)?t\.me\/|http?:\/\/(?:www\.)?tiktok\.com\/@)/g;
     modifiedString = modifiedString.replace(linkPattern, linkPath);
   }
+
 
 
   return modifiedString;

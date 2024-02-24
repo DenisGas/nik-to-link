@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&family=Roboto:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@700&family=Roboto:wght@700&display=swap");
 
 *,
 *::after,
@@ -6,13 +6,12 @@
   box-sizing: border-box;
 }
 
-
 :root {
   --main-color: #363a37;
   --second-color: #9aa777;
   --content-gap: 10px;
   --black: #272827;
-  --accent: #bc40ea;
+  --accent: #ff8800;
   --error: red;
   --white: #fff;
 }
@@ -22,7 +21,7 @@ body {
   justify-content: space-between;
   flex-direction: column;
   display: flex;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-weight: bold;
   width: 100%;
   margin: 0;
@@ -36,12 +35,11 @@ textarea {
 
 #link-text {
   font-weight: normal;
-  font-family: 'Roboto', sans-serif;
-  font-size: 12px;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
   width: 100%;
   height: 100%;
 }
-
 
 #link-textarea {
   position: relative;
@@ -50,12 +48,15 @@ textarea {
   overflow-x: hidden;
 }
 
+.about--accent {
+  color: var(--accent);
+}
+
 .smooth-appearance {
   transition: all 0.5s;
   opacity: 100% !important;
   display: block !important;
 }
-
 
 #link-copy-btn {
   opacity: 100%;
@@ -65,7 +66,6 @@ textarea {
   right: 0;
   transform: translate(-50%, 50%);
 }
-
 
 #message-container {
   opacity: 0%;
@@ -92,7 +92,6 @@ textarea {
   grid-template-columns: repeat(2, 1fr);
 }
 
-
 #get-link-button {
   margin: 10px 0;
   padding: 20px;
@@ -110,7 +109,6 @@ textarea {
   height: 46px;
 }
 
-
 .textarea--boxes {
   column-gap: 20px;
   display: grid;
@@ -126,24 +124,21 @@ textarea {
   width: 100%;
   height: 230px;
   padding: 10px;
-  font-size: 12px;
+  font-size: 15px;
   border: 1px solid #ccc;
   position: relative;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .main {
   padding: 1%;
 }
 
-
 .footer {
-  border-bottom: 2px solid var(--second-color);
   width: 100%;
   display: flex;
   background-color: var(--black);
   justify-content: center;
-
 }
 
 .footer a {
