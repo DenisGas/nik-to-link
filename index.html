@@ -5,105 +5,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./img/ico/logo.ico" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
   <title>Nik-to-Link</title>
 </head>
 
-<body>
+<body class="min-h-screen flex flex-col bg-gray-100">
 
-  <header class="header">
-    <a href=""><img class="ico" src="./img/logo.png"></a>
-    <p>BETA</p>
+  <header class="w-full flex items-center p-4 bg-gray-100">
+    <a href=""><img class="w-32 h-auto" src="./img/logo.png" alt="Logo"></a>
+    <p class="ml-4">BETA</p>
   </header>
-  <main class="main">
-    <section class="about">
-      <h1>About</h1>
-      <p>This site was invented to quickly tag people from an Instagram post - in the description with links for
-        YouTube.</p>
+
+  <main class="flex-grow p-4">
+    <section class="mb-8">
+      <h1 class="text-2xl font-bold mb-4">About</h1>
+      <p>This site was invented to quickly tag people from an Instagram post - in the description with links for YouTube.</p>
       <p>The site works with Instagram, YouTube, TikTok and Telegram type link</p>
-      <h2>Example</h2>
-      <p class="about--accent">Instagram post:</p>
+      <h2 class="text-xl font-semibold mt-4 mb-2">Example</h2>
+      <p class="text-orange-500">Instagram post:</p>
       <p>Hana as Niki @kamilla.rst <br>
         Tori as Jugwon @msvxl
       </p>
-      <p class="about--accent">After convertor with config "Instagram"</p>
+      <p class="text-orange-500 mt-2">After converter with config "Instagram"</p>
       <p>Hana as Niki https://www.instagram.com/kamilla.rst <br>
         Tori as Jugwon https://www.instagram.com/msvxl
       </p>
-      <p class="about--accent">After convertor with config "Instagram" and "Only Links"</p>
+      <p class="text-orange-500 mt-2">After converter with config "Instagram" and "Only Links"</p>
       <p>https://www.instagram.com/kamilla.rst <br>
         https://www.instagram.com/msvxl
       </p>
     </section>
 
-    <section class="convertor" id="convertor">
-      <div class=" textarea--boxes">
-        <div class="textarea--box NIK">
-          <h2 class=" textarea--box__h2">@NIK</h2>
-          <textarea id="nik-textarea" class=" textarea--box__textarea"></textarea>
+    <section id="converter" class="mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="bg-white p-4 shadow rounded relative" >
+          <h2 class="text-lg font-semibold mb-2">@NIK</h2>
+          <button id="clear-btn" class="absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 rounded">Clear</button>
+          <textarea id="nik-textarea" class="w-full h-56 p-2 border border-gray-300 rounded resize-none"></textarea>
         </div>
 
-        <div class="textarea--box LINK">
-          <h2 class=" textarea--box__h2">LINK</h2>
-          <div id="link-textarea" class="textarea--box__textarea">
-            <button id="link-copy-btn">Copy</button>
-            <div id="link-text"></div>
+        <div class="bg-white p-4 shadow rounded relative">
+          <h2 class="text-lg font-semibold mb-2">LINK</h2>
+          <div id="link-textarea" class="flex flex-col h-56 overflow-y-auto border border-gray-300 rounded p-2">
+            <button id="link-copy-btn" class="absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 rounded">Copy</button>
+            <div id="link-text" class="font-normal"></div>
           </div>
-
-        </div>
-
-      </div>
-      <div class="typeLinkBtn--box">
-
-        <div>
-          <input checked type="radio" id="type-link-1" name="typesLink" value="instagram">
-          <label for="type-link-1">Instagram</label>
-        </div>
-
-        <div>
-          <input type="radio" id="type-link-2" name="typesLink" value="telegram">
-          <label for="type-link-2">Telegram</label>
-        </div>
-
-        <div>
-          <input type="radio" id="type-link-3" name="typesLink" value="youtube">
-          <label for="type-link-3">YouTube</label>
-        </div>
-        <div>
-          <input type="radio" id="type-link-4" name="typesLink" value="tiktok">
-          <label for="type-link-4">TikTok</label>
         </div>
       </div>
 
-      <div class="checkboxes-box">
-        <div>
-          <input class="config-box" id="without-text" type="checkbox">
-          <label for="without-text">Only Links</label>
-        </div>
-        <div>
-          <input class="config-box" id="clean-link" type="checkbox">
-          <label for="clean-link">Clean Link</label>
-        </div>
-        <div>
-          <input class="config-box" id="replace-socials-links" type="checkbox">
-          <label for="replace-socials-links">replace Social Links</label>
-        </div>
-
+      <div class="flex flex-wrap mb-4">
+        <label class="mr-4">
+          <input checked type="radio" id="type-link-1" name="typesLink" value="instagram" class="mr-1"> Instagram
+        </label>
+        <label class="mr-4">
+          <input type="radio" id="type-link-2" name="typesLink" value="telegram" class="mr-1"> Telegram
+        </label>
+        <label class="mr-4">
+          <input type="radio" id="type-link-3" name="typesLink" value="youtube" class="mr-1"> YouTube
+        </label>
+        <label class="mr-4">
+          <input type="radio" id="type-link-4" name="typesLink" value="tiktok" class="mr-1"> TikTok
+        </label>
       </div>
 
-      <div class="btn--box">
-        <button id="get-link-button">GET LINK</button>
+      <div class="flex flex-wrap mb-4">
+        <label class="mr-4">
+          <input class="config-box mr-1" id="without-text" type="checkbox"> Only Links
+        </label>
+        <label class="mr-4">
+          <input class="config-box mr-1" id="clean-link" type="checkbox"> Clean Link
+        </label>
+        <label class="mr-4">
+          <input class="config-box mr-1" id="replace-socials-links" type="checkbox"> Replace Social Links
+        </label>
+      </div>
+
+      <div class="text-center">
+        <button id="get-link-button" class="bg-orange-500 text-white px-4 py-2 rounded">GET LINK</button>
       </div>
     </section>
-
-
-
   </main>
-  <footer class="footer">
-    <p>© Made by DenisGasilo <a target="_blank" href="https://github.com/DenisGas/nik-to-link">Project Page</a></p>
+
+  <footer class="w-full bg-gray-800 p-4 text-center text-white">
+    <p>© Made by DenisGasilo <a target="_blank" href="https://github.com/DenisGas/nik-to-link" class="text-orange-500 hover:text-orange-300">Project Page</a></p>
   </footer>
 
-  <div id="message-container"></div>
+  <div id="message-container" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 border border-gray-300 rounded shadow hidden opacity-0 transition-opacity duration-300"></div>
+
   <script defer src="./js/main.js"></script>
 </body>
 

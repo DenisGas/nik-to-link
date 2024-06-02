@@ -1,32 +1,43 @@
 const NIK_INPUT = document.getElementById("nik-textarea");
 const LINK_OUTPUT = document.getElementById("link-text");
 const GET_LINK_BUTTON = document.getElementById("get-link-button");
-const COPY_BTN = document.getElementById("link-copy-btn")
-
-
+const COPY_BTN = document.getElementById("link-copy-btn");
+const CLEAR_BTN = document.getElementById("clear-btn");
 
 const TextAreaNikContent = localStorage.getItem('TextAreaNik');
 if (TextAreaNikContent !== null) {
   NIK_INPUT.value = TextAreaNikContent;
-};
+}
 
+GET_LINK_BUTTON.addEventListener("click", (event) => {
+  if (NIK_INPUT.value !== "") {
+    if (NIK_INPUT.classList.contains("error")) {
+      NIK_INPUT.classList.remove("error")
+    }
+    callGetLinkFunc();
+  } else {
+    NIK_INPUT.classList.add("error")
+  }
+});
 
-NIK_INPUT.addEventListener("input", (e) => {
-  textValue = e.target.value;
-  callGetLinkFunc()
+CLEAR_BTN.addEventListener("click", (event) => {
+  NIK_INPUT.value = '';
+  LINK_OUTPUT.innerText = '';
+  localStorage.setItem('TextAreaNik', '');
+  
 });
 
 
+NIK_INPUT.addEventListener("input", (e) => {
+  callGetLinkFunc();
+});
 
 function showMessage(messageText) {
   const messageContainer = document.getElementById('message-container');
-
-  messageContainer.classList.toggle("smooth-appearance");
-
   messageContainer.textContent = messageText;
-
+  messageContainer.classList.add("smooth-appearance");
   setTimeout(function () {
-    messageContainer.classList.toggle("smooth-appearance");
+    messageContainer.classList.remove("smooth-appearance");
   }, 1000);
 }
 
@@ -40,49 +51,23 @@ checkboxes.forEach(box => {
 });
 
 function getLinkType() {
-  const radios = document.getElementsByName("typesLink");
   const selected = Array.from(radios).find(radio => radio.checked);
-  return selected.value
+  return selected ? selected.value : "instagram"; 
 }
-
-
 
 function callGetLinkFunc() {
   const text = NIK_INPUT.value;
-
   const linkType = getLinkType();
   const onlyLinks = getCheckBoxState("without-text");
   const replaceSocialLinks = getCheckBoxState("replace-socials-links");
   const cleanLink = getCheckBoxState("clean-link");
   const link = getLink(text, linkType, onlyLinks, replaceSocialLinks, cleanLink);
-
   LINK_OUTPUT.innerText = link;
-
   if (link !== text) {
     localStorage.setItem('TextAreaNik', text);
   }
-
-  return true
 }
 
-
-GET_LINK_BUTTON.addEventListener("click", (event) => {
-  if (NIK_INPUT.value !== "") {
-    if (NIK_INPUT.classList.contains("error")) {
-      NIK_INPUT.classList.remove("error")
-    }
-
-    callGetLinkFunc()
-
-    return true
-
-  }
-
-  NIK_INPUT.classList.add("error")
-
-  return false
-
-});
 
 
 COPY_BTN.addEventListener("click", (event) => {
@@ -91,17 +76,14 @@ COPY_BTN.addEventListener("click", (event) => {
   setTimeout(function () {
     event.target.disabled = false;
   }, 500);
-
 });
 
 
-
 function copyToClipboard(text) {
-  if (text === "" || text === null || text === undefined) {
+  if (!text) {
     showMessage('ERROR! No text');
     return;
   }
-
   navigator.clipboard.writeText(text).then(function () {
     showMessage('Result copied to clipboard');
   }).catch(function (error) {
@@ -109,6 +91,7 @@ function copyToClipboard(text) {
     console.error('ERROR:', error);
   });
 }
+
 
 function getLinkPath(linkType) {
   switch (linkType) {
@@ -125,8 +108,6 @@ function getLinkPath(linkType) {
       return "ERROR"
   }
 }
-
-
 
 function getLink(text, linkType = "instagram", onlyLinks = false, replaceSocialLinks = false, cleanLink = false,
   delimiter = "") {
@@ -149,13 +130,10 @@ function getLink(text, linkType = "instagram", onlyLinks = false, replaceSocialL
       return `${delimiter}${linkPath}${username} `;
     });
 
-
   if (cleanLink || replaceSocialLinks) {
     const cleanLinkPattern = /\?.*/g;
     modifiedString = modifiedString.replace(cleanLinkPattern, " ");
   }
-
-  console.log(modifiedString);
 
   if (onlyLinks) {
     const onlyLinksPattern = /(https?:\/\/)(?:www\.)?([^\s]+)/g;
@@ -163,24 +141,15 @@ function getLink(text, linkType = "instagram", onlyLinks = false, replaceSocialL
     modifiedString = matches ? matches.join("\n") : "";
   }
 
-  console.log(modifiedString);
-
   if (replaceSocialLinks) {
-    console.log(modifiedString);
-
     const linkPattern = /(https?:\/\/(?:www\.)?instagram\.com\/|https?:\/\/(?:www\.)?youtube\.com\/@|https?:\/\/(?:www\.)?t\.me\/|http?:\/\/(?:www\.)?tiktok\.com\/@)/g;
     modifiedString = modifiedString.replace(linkPattern, linkPath);
   }
-
-
 
   return modifiedString;
 }
 
 function getCheckBoxState(id) {
   const checkbox = document.getElementById(id)
-  if (checkbox.checked) {
-    return true
-  }
-  return false
+  return checkbox.checked;
 }
